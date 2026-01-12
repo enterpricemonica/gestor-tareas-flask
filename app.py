@@ -23,7 +23,9 @@ def completar(id):
 
 @app.route('/')
 def index():
-    return render_template('index.html', tasks=tareas)
+    # Ordenar tareas: incompletas primero, luego completadas
+    tareas_ordenadas = sorted(tareas, key=lambda t: t['hecho'])
+    return render_template('index.html', tasks=tareas_ordenadas)
 
 @app.route('/agregar', methods=['POST'])
 def agregar():
