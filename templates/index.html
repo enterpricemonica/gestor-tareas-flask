@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Tareas</title>
+</head>
+<body>
+    <h1>Lista de Tareas</h1>
+    <ul>
+        {% for task in tasks %}
+        <li>
+            {{ task.texto }}
+            {% if not task.hecho %}
+            <a href="/complete/{{ task.id }}">Completar</a>
+            {% else %}
+            (Completada)
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    <h2>Añadir Nueva Tarea</h2>
+    <form method="post">
+        <input type="text" name="task" placeholder="Nueva tarea" required>
+        <button type="submit">Añadir</button>
+    </form>
+</body>
+</html>
