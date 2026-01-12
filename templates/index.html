@@ -12,7 +12,7 @@
         <li>
             {{ task.texto }}
             {% if not task.hecho %}
-            <a href="/complete/{{ task.id }}">Completar</a>
+            <a href="/completar/{{ task.id }}">Completar</a>
             {% else %}
             (Completada)
             {% endif %}
@@ -20,7 +20,7 @@
         {% endfor %}
     </ul>
     <h2>Añadir Nueva Tarea</h2>
-    <form method="post">
+    <form method="post" action="/agregar">
         <input type="text" name="task" placeholder="Nueva tarea" required>
         <button type="submit">Añadir</button>
     </form>

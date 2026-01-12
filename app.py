@@ -16,17 +16,20 @@ def completar_tarea(id):
             tarea['hecho'] = True
             break
 
-@app.route('/complete/<int:id>')
-def complete(id):
+@app.route('/completar/<int:id>')
+def completar(id):
     completar_tarea(id)
     return redirect(url_for('index'))
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
 def index():
-    if request.method == 'POST':
-        task = request.form['task']
-        agregar_tarea(task)
     return render_template('index.html', tasks=tareas)
+
+@app.route('/agregar', methods=['POST'])
+def agregar():
+    task = request.form['task']
+    agregar_tarea(task)
+    return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.run(debug=True)
