@@ -19,7 +19,7 @@ def completar_tarea(id):
 @app.route('/completar/<int:id>')
 def completar(id):
     completar_tarea(id)
-    return redirect(url_for('index'))
+    return redirect('/')
 
 @app.route('/')
 def index():
@@ -29,9 +29,10 @@ def index():
 
 @app.route('/agregar', methods=['POST'])
 def agregar():
-    task = request.form['task']
-    agregar_tarea(task)
-    return redirect(url_for('index'))
+    texto_tarea = request.form.get('texto_tarea')
+    if texto_tarea:
+        agregar_tarea(texto_tarea)
+    return redirect('/')
 
 if __name__ == '__main__':
     app.run(debug=True)
